@@ -110,7 +110,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col bg-zinc-50 font-sans text-zinc-950 dark:bg-black dark:text-zinc-50">
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-10 sm:px-8">
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-10 sm:px-8 lg:px-12 lg:py-16 xl:px-16 xl:py-20">
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold tracking-tight">
             서머너즈워 공격속도 계산기
