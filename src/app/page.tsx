@@ -38,7 +38,11 @@ function monsterMatchesQuery(m: Monster, query: string) {
 
 export default function Home() {
   const monsterList = useMemo(() => Object.values(monsters), []);
-  const monsterById = useMemo(() => monsters, []);
+  const monsterById = useMemo(() => {
+    const map: Record<string, Monster> = {};
+    for (const m of monsterList) map[m.id] = m;
+    return map;
+  }, [monsterList]);
   const [pickerOpenSlotKey, setPickerOpenSlotKey] = useState<string | null>(
     null,
   );
@@ -244,7 +248,7 @@ export default function Home() {
                       }}
                     >
                       <span className="truncate">
-                        {slot.monsterId
+                        {slot.monsterId && monsterById[slot.monsterId]
                           ? labelMonster(monsterById[slot.monsterId])
                           : "몬스터 선택"}
                       </span>
