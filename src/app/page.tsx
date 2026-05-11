@@ -117,13 +117,13 @@ export default function Home() {
           </h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
             명예건물(%) + 리더스킬(%)만 먼저 반영하고, 각 몬스터는 추가
-            공속(룬)을 숫자로 넣어서 턴 순서를 맞춥니다.
+            공속(룬)이 반영됩니다.
           </p>
         </header>
 
         <section className="grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950 sm:grid-cols-3">
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">명예건물 공속(%)</label>
+            <label className="pl-1 text-sm font-medium">명예건물 공속(%)</label>
             <input
               className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-sm outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:focus:border-zinc-600"
               inputMode="numeric"
@@ -134,7 +134,7 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-sm font-medium">리더스킬 공속(%)</label>
+            <label className="pl-1 text-sm font-medium">리더스킬 공속(%)</label>
             <div className="relative" ref={leaderRef}>
               <button
                 type="button"
@@ -184,42 +184,11 @@ export default function Home() {
               ) : null}
             </div>
           </div>
-          <div className="flex items-end justify-between gap-3">
-            <div className="flex flex-col gap-1">
-              <div className="text-sm font-medium">합산 보너스(%)</div>
-              <div className="h-11 rounded-xl border border-zinc-200 bg-zinc-50 px-3 text-sm leading-[44px] dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="flex flex-col gap-1">
+              <div className="pl-1 text-sm font-medium">합산 보너스(%)</div>
+              <div className="h-11 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3 text-sm leading-[44px] tabular-nums dark:border-zinc-800 dark:bg-zinc-900">
                 {totalPercent}%
               </div>
-            </div>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-sm font-medium disabled:opacity-50 dark:border-zinc-800 dark:bg-black"
-                disabled={!canRemoveSlot}
-                onClick={() =>
-                  setSlots((prev) => prev.slice(0, prev.length - 1))
-                }
-              >
-                - 슬롯
-              </button>
-              <button
-                type="button"
-                className="h-11 rounded-xl bg-zinc-900 px-3 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:text-black"
-                disabled={!canAddSlot}
-                onClick={() =>
-                  setSlots((prev) => [
-                    ...prev,
-                    {
-                      key: String(prev.length + 1),
-                      monsterId: "",
-                      addSpeed: 0,
-                    },
-                  ])
-                }
-              >
-                + 슬롯
-              </button>
-            </div>
           </div>
         </section>
 
@@ -227,8 +196,32 @@ export default function Home() {
           <div className="rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-base font-semibold">몬스터 선택 (3~5)</h2>
-              <div className="text-xs text-zinc-500 dark:text-zinc-400">
-                데이터: `src/data/monsters.ts`
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  className="h-9 rounded-xl border border-zinc-200 bg-white px-3 text-sm font-medium disabled:opacity-50 dark:border-zinc-800 dark:bg-black"
+                  disabled={!canRemoveSlot}
+                  onClick={() => setSlots((prev) => prev.slice(0, prev.length - 1))}
+                >
+                  - 슬롯
+                </button>
+                <button
+                  type="button"
+                  className="h-9 rounded-xl bg-zinc-900 px-3 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:text-black"
+                  disabled={!canAddSlot}
+                  onClick={() =>
+                    setSlots((prev) => [
+                      ...prev,
+                      {
+                        key: String(prev.length + 1),
+                        monsterId: "",
+                        addSpeed: 0,
+                      },
+                    ])
+                  }
+                >
+                  + 슬롯
+                </button>
               </div>
             </div>
 
@@ -239,7 +232,7 @@ export default function Home() {
                   className="grid grid-cols-1 gap-2 rounded-xl border border-zinc-200 p-3 dark:border-zinc-800 sm:grid-cols-5"
                 >
                   <div className="sm:col-span-3">
-                    <div className="mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                    <div className="pl-1 mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                       슬롯 {i + 1}
                     </div>
                     <button
@@ -255,14 +248,16 @@ export default function Home() {
                           ? labelMonster(monsterById[slot.monsterId])
                           : "몬스터 선택"}
                       </span>
+                      {/*   
                       <span className="ml-3 shrink-0 text-zinc-500 dark:text-zinc-400">
                         검색
-                      </span>
+                      </span> 
+                      */}
                     </button>
                   </div>
 
                   <div className="sm:col-span-2">
-                    <div className="mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                    <div className="pl-1 mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                       추가 공속(+)
                     </div>
                     <input
