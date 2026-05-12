@@ -824,8 +824,8 @@ export const monsters: Record<string, Monster> = {
   },
   nobaraKugisaki: {
     id: "nobarta kugisaki",
-    nameKr: "노바라 쿠기사키",
-    awakenedNameKr: "노바라 쿠기사키",
+    nameKr: "쿠기사키 노바라",
+    awakenedNameKr: "쿠기사키 노바라",
     attribute: "fire",
     baseSpeed: 102,
     stars: 4,
