@@ -352,7 +352,7 @@ export default function Home() {
             <div className="flex items-center gap-2">
               <input
                 className="h-11 flex-1 rounded-xl border border-zinc-200 bg-white px-3 text-sm outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:focus:border-zinc-600"
-                placeholder="이름/각성/속성/ID로 검색 (예: 조커, 루쉔, lushen)"
+                placeholder="몬스터명, 각성명(한글, 영문)으로 검색 (예: 조커, 루쉔, lushen)"
                 value={pickerQuery}
                 autoFocus
                 onChange={(e) => setPickerQuery(e.target.value)}

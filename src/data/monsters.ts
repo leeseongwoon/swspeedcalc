@@ -21,7 +21,7 @@ export const monsters: Record<string, Monster> = {
   tantra: {
     id: "tantra",
     nameKr: "예티",
-    awakenedNameKr: "탠트라",
+    awakenedNameKr: "탄트라",
     attribute: "fire",
     baseSpeed: 101,
     stars: 2,
@@ -29,7 +29,7 @@ export const monsters: Record<string, Monster> = {
   sieq: {
     id: "sieq",
     nameKr: "헬하운드",
-    awakenedNameKr: "지이크",
+    awakenedNameKr: "지크",
     attribute: "fire",
     baseSpeed: 115,
     stars: 2,
@@ -53,7 +53,7 @@ export const monsters: Record<string, Monster> = {
   cahule: {
     id: "cahule",
     nameKr: "가루다",
-    awakenedNameKr: "카훌",
+    awakenedNameKr: "카휼",
     attribute: "fire",
     baseSpeed: 93,
     stars: 2,
@@ -61,7 +61,7 @@ export const monsters: Record<string, Monster> = {
   colleen: {
     id: "colleen",
     nameKr: "하르퓨",
-    awakenedNameKr: "콜린",
+    awakenedNameKr: "칼린",
     attribute: "fire",
     baseSpeed: 106,
     stars: 2,
@@ -143,7 +143,7 @@ export const monsters: Record<string, Monster> = {
   },
   kahli: {
     id: "kahli",
-    nameKr: "상급 엘리멘탈",
+    nameKr: "하이엘리멘탈",
     awakenedNameKr: "칼리",
     attribute: "fire",
     baseSpeed: 102,
@@ -168,7 +168,7 @@ export const monsters: Record<string, Monster> = {
   geoffrey: {
     id: "geoffrey",
     nameKr: "바이킹",
-    awakenedNameKr: "거프리",
+    awakenedNameKr: "죠프리",
     attribute: "fire",
     baseSpeed: 97,
     stars: 3,
@@ -191,7 +191,7 @@ export const monsters: Record<string, Monster> = {
   },
   kaien: {
     id: "keien",
-    nameKr: "방랑기사",
+    nameKr: "방랑 기사",
     awakenedNameKr: "카이엔",
     attribute: "fire",
     baseSpeed: 98,
@@ -199,7 +199,7 @@ export const monsters: Record<string, Monster> = {
   },
   amanda: {
     id: "amanda",
-    nameKr: "마법궁수",
+    nameKr: "마법 궁사",
     awakenedNameKr: "아만다",
     attribute: "fire",
     baseSpeed: 105,
@@ -239,7 +239,7 @@ export const monsters: Record<string, Monster> = {
   },
   iron: {
     id: "iron",
-    nameKr: "리빙아머",
+    nameKr: "리빙 아머",
     awakenedNameKr: "아이언",
     attribute: "fire",
     baseSpeed: 98,
@@ -247,7 +247,7 @@ export const monsters: Record<string, Monster> = {
   },
   xioChun: {
     id: "xio chun",
-    nameKr: "드렁큰 타이거",
+    nameKr: "드렁큰 마스터",
     awakenedNameKr: "샤오춘",
     attribute: "fire",
     baseSpeed: 99,
@@ -255,8 +255,8 @@ export const monsters: Record<string, Monster> = {
   },
   brentau: {
     id: "brentau",
-    nameKr: "미노타우로스",
-    awakenedNameKr: "브렌타우",
+    nameKr: "미노타우르스",
+    awakenedNameKr: "버런타우",
     attribute: "fire",
     baseSpeed: 98,
     stars: 3,
@@ -269,10 +269,10 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 102,
     stars: 3,
   },
-  gupyeong: {
-    id: "gupyeong",
+  gunpyeong: {
+    id: "gunpyeong",
     nameKr: "도술사",
-    awakenedNameKr: "구평",
+    awakenedNameKr: "군평",
     attribute: "fire",
     baseSpeed: 104,
     stars: 3,
@@ -287,7 +287,7 @@ export const monsters: Record<string, Monster> = {
   },
   naki: {
     id: "naki",
-    nameKr: "펭귄 기사",
+    nameKr: "펭귄기사",
     awakenedNameKr: "나키",
     attribute: "fire",
     baseSpeed: 105,
@@ -304,22 +304,22 @@ export const monsters: Record<string, Monster> = {
   anne: {
     id: "anne",
     nameKr: "카우걸",
-    awakenedNameKr: "안느",
+    awakenedNameKr: "앤",
     attribute: "fire",
     baseSpeed: 102,
     stars: 3,
   },
    ignicus: {
     id: "ignicus",
-    nameKr: "돌격 상어",
-    awakenedNameKr: "이그니커스",
+    nameKr: "돌격상어",
+    awakenedNameKr: "이그니쿠스",
     attribute: "fire",
     baseSpeed: 105,
     stars: 3,
   },
   sin: {
     id: "sin",
-    nameKr: "무술가",
+    nameKr: "무도가",
     awakenedNameKr: "신",
     attribute: "fire",
     baseSpeed: 99,
@@ -1034,7 +1034,7 @@ export const monsters: Record<string, Monster> = {
   sekhmet: {
     id: "sekhmet",
     nameKr: "사막 여왕",
-    awakenedNameKr: "ㄱ",
+    awakenedNameKr: "세크메트",
     attribute: "fire",
     baseSpeed: 116,
     stars: 5,
@@ -1049,8 +1049,8 @@ export const monsters: Record<string, Monster> = {
   },
   xiongFei: {
     id: "xiong fei",
-    nameKr: "팬더",
-    awakenedNameKr: "ㄱ",
+    nameKr: "웅묘무사",
+    awakenedNameKr: "웅비",
     attribute: "fire",
     baseSpeed: 96,
     stars: 5,
@@ -1145,8 +1145,8 @@ export const monsters: Record<string, Monster> = {
   },
   bernadotte: {
     id: "bernadotte",
-    nameKr: "쉐도우 클로우",
-    awakenedNameKr: "ㄱ",
+    nameKr: "쉐도우 클로",
+    awakenedNameKr: "베르나도트",
     attribute: "fire",
     baseSpeed: 103,
     stars: 5,
@@ -1193,7 +1193,7 @@ export const monsters: Record<string, Monster> = {
   },
   carlos: {
     id: "carlos",
-    nameKr: "웨폰 마스터",
+    nameKr: "웨폰마스터",
     awakenedNameKr: "카를로스",
     attribute: "fire",
     baseSpeed: 102,
@@ -1201,7 +1201,7 @@ export const monsters: Record<string, Monster> = {
   },
   ren: {
     id: "ren",
-    nameKr: "그림자 술사",
+    nameKr: "그림자술사",
     awakenedNameKr: "렌",
     attribute: "fire",
     baseSpeed: 120,
