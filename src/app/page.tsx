@@ -199,7 +199,7 @@ export default function Home() {
         <section className="grid gap-3 lg:grid-cols-2">
           <div className="rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-base font-semibold">몬스터 선택 (3~5)</h2>
+              <h2 className="text-base font-semibold">몬스터 선택 (2~5)</h2>
               <div className="flex gap-2">
                 <button
                   type="button"
