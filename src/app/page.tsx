@@ -329,7 +329,7 @@ export default function Home() {
 
       {pickerOpenSlotKey ? (
         <div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 sm:items-center"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-4 sm:items-start sm:pt-8"
           role="dialog"
           aria-modal="true"
           onMouseDown={() => setPickerOpenSlotKey(null)}
