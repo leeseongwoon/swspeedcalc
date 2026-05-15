@@ -91,7 +91,7 @@ export const monsters: Record<string, Monster> = {
     stars: 2,
   },
 
-  // --- 2star end --- //
+  // --- fire 2star end --- //
 
   raoq: {
     id: "raoq",
@@ -365,7 +365,7 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 99,
     stars: 3,
   },
-  // --- 3star end --- //
+  // --- fire 3star end --- //
   shihwa: {
     id: "shihwa",
     nameKr: "구미호",
@@ -671,7 +671,7 @@ export const monsters: Record<string, Monster> = {
     stars: 4,
   },
   "dhalsim(F)": {
-    id: "dhalsim",
+    id: "dhalsim(F)",
     nameKr: "달심",
     awakenedNameKr: "달심",
     attribute: "fire",
@@ -679,7 +679,7 @@ export const monsters: Record<string, Monster> = {
     stars: 4,
   },
   "chunLi(F)": {
-    id: "chun-li",
+    id: "chun-li(F)",
     nameKr: "쿵푸걸",
     awakenedNameKr: "춘리",
     attribute: "fire",
@@ -735,7 +735,7 @@ export const monsters: Record<string, Monster> = {
     stars: 4,
   },
   "espressoCookie(F)": {
-    id: "espresso cookie",
+    id: "espresso cookie(F)",
     nameKr: "에스프레소 쿠키",
     awakenedNameKr: "에스프레소 쿠키",
     attribute: "fire",
@@ -743,7 +743,7 @@ export const monsters: Record<string, Monster> = {
     stars: 4,
   },
   "madeleineCookie(F)": {
-    id: "madeleine cookie",
+    id: "madeleine cookie(F)",
     nameKr: "마들렌 쿠키",
     awakenedNameKr: "마들렌 쿠키",
     attribute: "fire",
@@ -896,21 +896,22 @@ export const monsters: Record<string, Monster> = {
   },
   agrius: {
     id: "agrius",
-    nameKr: "켄타 나이트",
+    nameKr: "켄타나이트",
     awakenedNameKr: "아그리우스",
     attribute: "fire",
     baseSpeed: 104,
     stars: 4,
   },
-  gollum: {
-    id: "gollum",
+  "gollum(F)": {
+    id: "gollum(F)",
     nameKr: "골룸",
     awakenedNameKr: "골룸",
     attribute: "fire",
     baseSpeed: 105,
     stars: 4,
   },
-  // --- 4star end --- //
+  // --- fire 4star end --- //
+
   vanessa: {
     id: "vanessa",
     nameKr: "발키리",
@@ -1264,7 +1265,7 @@ export const monsters: Record<string, Monster> = {
     stars: 5,
   },
   "bayek(F)": {
-    id: "bayek",
+    id: "bayek(F)",
     nameKr: "바예크",
     awakenedNameKr: "바예크",
     attribute: "fire",
@@ -1272,7 +1273,7 @@ export const monsters: Record<string, Monster> = {
     stars: 5,
   },
   "kassandra(F)": {
-    id: "kassandra",
+    id: "kassandra(F)",
     nameKr: "카산드라",
     awakenedNameKr: "카산드라",
     attribute: "fire",
@@ -1351,7 +1352,7 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 103,
     stars: 5,
   },
-  triss: {
+  "triss(F)": {
     id: "triss",
     nameKr: "트리스",
     awakenedNameKr: "트리스",
@@ -1407,8 +1408,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 104,
     stars: 5,
   },
-  megumiFushiguro: {
-    id: "megumi fushiguro",
+  "megumiFushiguro(F)": {
+    id: "megumi fushiguro(F)",
     nameKr: "후시구로 메구미",
     awakenedNameKr: "후시구로 메구미",
     attribute: "fire",
@@ -1431,8 +1432,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 104,
     stars: 5,
   },
-  tetsuya: {
-    id: "tetsuya",
+  "tetsuya(F)": {
+    id: "tetsuya(F)",
     nameKr: "테츠야",
     awakenedNameKr: "테츠야",
     attribute: "fire",
@@ -1455,8 +1456,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 100,
     stars: 5,
   },
-  tanjiroKamado: {
-    id: "tanjiro kamado",
+  "tanjiroKamado(F)": {
+    id: "tanjiro kamado(F)",
     nameKr: "카마도 탄지로",
     awakenedNameKr: "카마도 탄지로",
     attribute: "fire",
@@ -1479,8 +1480,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 104,
     stars: 5,
   },
-  azureDragonSwordsman: {
-    id: "aure dragon swordman",
+  "azureDragonSwordsman(F)": {
+    id: "aure dragon swordman(F)",
     nameKr: "청룡 검사",
     awakenedNameKr: "청룡 검사",
     attribute: "fire",
@@ -1519,8 +1520,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 99,
     stars: 5,
   },
-  jinKazama: {
-    id: "zin kazama",
+  "jinKazama(F)": {
+    id: "zin kazama(F)",
     nameKr: "카자마 진",
     awakenedNameKr: "카자마 진",
     attribute: "fire",
@@ -1543,8 +1544,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 99,
     stars: 5,
   },
-  kai: {
-    id: "kai",
+  "kai(F)": {
+    id: "kai(F)",
     nameKr: "카이",
     awakenedNameKr: "카이",
     attribute: "fire",
@@ -1591,8 +1592,8 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 102,
     stars: 5,
   },
-  legolas: {
-    id: "legolas",
+  "legolas(F)": {
+    id: "legolas(F)",
     nameKr: "레골라스",
     awakenedNameKr: "레골라스",
     attribute: "fire",
@@ -1698,7 +1699,7 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 98,
     stars: 2,
   },
-  // --- 2star end --- //
+  // --- water 2star end --- //
 
   elucia: {
     id: "elucia",
@@ -1972,7 +1973,7 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 114,
     stars: 3,
   },
-  // --- 3star end --- //
+  // --- water 3star end --- //
 
   soha: {
     id: "soha",
@@ -2278,16 +2279,16 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 107,
     stars: 4,
   },
-  "dhalsim(w)": {
-    id: "dhalsim",
+  "dhalsim(wa)": {
+    id: "dhalsim(wa)",
     nameKr: "달심",
     awakenedNameKr: "달심",
     attribute: "water",
     baseSpeed: 101,
     stars: 4,
   },
-  "chunLi(W)": {
-    id: "chun-li",
+  "chunLi(wa)": {
+    id: "chun-li(wa)",
     nameKr: "춘리",
     awakenedNameKr: "춘리",
     attribute: "water",
@@ -2342,16 +2343,16 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 115,
     stars: 4,
   },
-  "espressoCookie(W)": {
-    id: "espresso cookie",
+  "espressoCookie(wa)": {
+    id: "espresso cookie(wa)",
     nameKr: "에스프레소 쿠키",
     awakenedNameKr: "에스프레소 쿠키",
     attribute: "water",
     baseSpeed: 116,
     stars: 4,
   },
-  "madeleineCookie(W)": {
-    id: "madeleine cookie",
+  "madeleineCookie(wa)": {
+    id: "madeleine cookie(wa)",
     nameKr: "마들렌 쿠키",
     awakenedNameKr: "마들렌 쿠키",
     attribute: "water",
@@ -2374,20 +2375,166 @@ export const monsters: Record<string, Monster> = {
     baseSpeed: 103,
     stars: 4,
   },
-  "bayek(W)": {
-    id: "batek",
+  "bayek(wa)": {
+    id: "batek(wa)",
     nameKr: "바예크",
     awakenedNameKr: "바예크",
     attribute: "water",
     baseSpeed: 103,
     stars: 4,
   },
-  "kassandra(W)": {
-    id: "kassandra",
+  "kassandra(wa)": {
+    id: "kassandra(wa)",
     nameKr: "카산드라",
     awakenedNameKr: "카산드라",
     attribute: "water",
     baseSpeed: 100,
     stars: 4,
   },
+  omar: {
+    id: "omar",
+    nameKr: "사막 전사",
+    awakenedNameKr: "오마르",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  kalatatze: {
+    id: "kalatatze",
+    nameKr: "검투사",
+    awakenedNameKr: "칼란타제",
+    attribute: "water",
+    baseSpeed: 100,
+    stars: 4,
+  },
+  mayasura: {
+    id: "mayasura",
+    nameKr: "아수라",
+    awakenedNameKr: "마야수라",
+    attribute: "water",
+    baseSpeed: 102,
+    stars: 4,
+  },
+  minjiAndSapsaree: {
+    id: "도깨비 공주와 삽살이",
+    nameKr: "민지와 삽살이",
+    awakenedNameKr: "",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  "triss(WA)": {
+    id: "triss(WA)",
+    nameKr: "트리스",
+    awakenedNameKr: "트리스",
+    attribute: "water",
+    baseSpeed: 101,
+    stars: 4,
+  },
+  lumina: {
+    id: "lumina",
+    nameKr: "마법교단 원소술사",
+    awakenedNameKr: "루미나",
+    attribute: "water",
+    baseSpeed: 101,
+    stars: 4,
+  },
+  lorenza: {
+    id: "lorenza",
+    nameKr: "사이보그",
+    awakenedNameKr: "로렌사",
+    attribute: "water",
+    baseSpeed: 104,
+    stars: 4,
+  },
+  "megumiFushiguro(WA)": {
+    id: "megumi fushguro",
+    nameKr: "후시구로 메구미",
+    awakenedNameKr: "후시구로 메구미",
+    attribute: "water",
+    baseSpeed: 101,
+    stars: 4,
+  },
+  "tetsuya(WA)": {
+    id: "tetsuya(WA)",
+    nameKr: "테츠야",
+    awakenedNameKr: "테츠야",
+    attribute: "water",
+    baseSpeed: 101,
+    stars: 4,
+  },
+  mork: {
+    id: "mork",
+    nameKr: "묘지기",
+    awakenedNameKr: "모크",
+    attribute: "water",
+    baseSpeed: 98,
+    stars: 4,
+  },
+  "tanjiroKamado(WA)": {
+    id: "tanjiro kamado(WA)",
+    nameKr: "카마도 탄지로",
+    awakenedNameKr: "카마도 탄지로",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  "azureDragonSwordsman(WA)": {
+    id: "azure dragon swordsman(WA)",
+    nameKr: "청룡 검사",
+    awakenedNameKr: "청룡 검사",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  "jinKazama(WA)": {
+    id: "jin kazama(WA)",
+    nameKr: "카자마 진",
+    awakenedNameKr: "카자마 진",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  "kai(WA)": {
+    id: "kai(WA)",
+    nameKr: "카이",
+    awakenedNameKr: "카이",
+    attribute: "water",
+    baseSpeed: 103,
+    stars: 4,
+  },
+  rhoetus: {
+    id: "rhoetus",
+    nameKr: "켄타나이트",
+    awakenedNameKr: "로투스",
+    attribute: "water",
+    baseSpeed: 104,
+    stars: 4,
+  },
+  "legolas(WA)": {
+    id: "legolas(WA)",
+    nameKr: "레골라스",
+    awakenedNameKr: "레골라스",
+    attribute: "water",
+    baseSpeed: 100,
+    stars: 4,
+  },
+  "gollum(WA)": {
+    id: "gollum(WA)",
+    nameKr: "골룸",
+    awakenedNameKr: "골룸",
+    attribute: "water",
+    baseSpeed: 105,
+    stars: 4,
+  },
+  // --- water 4star end --- //
+/* 
+  m: {
+    id: "",
+    nameKr: "",
+    awakenedNameKr: "",
+    attribute: "water",
+    baseSpeed: 100,
+    stars: 4,
+  }, */
 };
