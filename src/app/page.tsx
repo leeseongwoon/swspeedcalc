@@ -397,8 +397,8 @@ export default function Home() {
                             </span>
                           </div>
                           <div className="truncate text-xs text-zinc-600 dark:text-zinc-400">
-                            {m.nameKr} · 기본 {m.baseSpeed} · {m.stars}성 · id:
-                            {m.id}
+                            {m.nameKr} · 공격속도 {m.baseSpeed} · {m.stars}성{/*  · id:
+                            {m.id} */}
                           </div>
                         </div>
                         <div className="shrink-0 text-xs font-medium text-zinc-500 dark:text-zinc-400">
