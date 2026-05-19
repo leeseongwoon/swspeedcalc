@@ -1,7 +1,7 @@
 "use client";
 
 import { monsters } from "@/data/monsters";
-import type { Monster } from "@/types/monster";
+import type { Attribute, Monster } from "@/types/monster";
 import { calcFinalSpeed } from "@/lib/speed";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -9,6 +9,14 @@ type Slot = {
   key: string;
   monsterId: string | "";
   addSpeed: number;
+};
+
+const ATTR_BADGE: Record<Attribute, string> = {
+  fire: "sw-attr-badge sw-attr-badge-fire",
+  water: "sw-attr-badge sw-attr-badge-water",
+  wind: "sw-attr-badge sw-attr-badge-wind",
+  light: "sw-attr-badge sw-attr-badge-light",
+  dark: "sw-attr-badge sw-attr-badge-dark",
 };
 
 function clampInt(n: number, min: number, max: number) {
@@ -36,6 +44,36 @@ function monsterMatchesQuery(m: Monster, query: string) {
   return hay.includes(q);
 }
 
+/** 몬스터 검색 목록: 숫자 → 영문 → 한글 */
+function awakenedNameSortCategory(name: string): number {
+  const first = [...name.trim()][0];
+  if (!first) return 3;
+  const code = first.codePointAt(0)!;
+  if (code >= 0x30 && code <= 0x39) return 0;
+  if (
+    (code >= 0x41 && code <= 0x5a) ||
+    (code >= 0x61 && code <= 0x7a)
+  ) {
+    return 1;
+  }
+  if (
+    (code >= 0xac00 && code <= 0xd7a3) ||
+    (code >= 0x1100 && code <= 0x11ff) ||
+    (code >= 0x3131 && code <= 0x318e)
+  ) {
+    return 2;
+  }
+  return 3;
+}
+
+function compareAwakenedNameKr(a: string, b: string): number {
+  const catA = awakenedNameSortCategory(a);
+  const catB = awakenedNameSortCategory(b);
+  if (catA !== catB) return catA - catB;
+  if (catA === 2) return a.localeCompare(b, "ko");
+  return a.localeCompare(b, "en", { numeric: true, sensitivity: "base" });
+}
+
 export default function Home() {
   const monsterList = useMemo(() => Object.values(monsters), []);
   const monsterById = useMemo(() => {
@@ -49,7 +87,9 @@ export default function Home() {
   const [pickerQuery, setPickerQuery] = useState("");
   const pickerList = useMemo(() => {
     const list = monsterList.filter((m) => monsterMatchesQuery(m, pickerQuery));
-    list.sort((a, b) => a.awakenedNameKr.localeCompare(b.awakenedNameKr, "ko"));
+    list.sort((a, b) =>
+      compareAwakenedNameKr(a.awakenedNameKr, b.awakenedNameKr),
+    );
     return list;
   }, [monsterList, pickerQuery]);
 
@@ -113,23 +153,26 @@ export default function Home() {
   }, [leaderOpen]);
 
   return (
-    <div className="flex flex-1 flex-col bg-zinc-50 font-sans text-zinc-950 dark:bg-black dark:text-zinc-50">
+    <div className="flex flex-1 flex-col text-[var(--sw-text)]">
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-10 sm:px-8 lg:px-12 lg:py-16 xl:px-16 xl:py-20">
-        <header className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight">
+        <header className="flex flex-col gap-2 border-b border-[var(--sw-border-gold)] pb-5">
+          <p className="text-xs font-semibold tracking-[0.2em] text-[var(--sw-gold)] uppercase">
+            Summoners War
+          </p>
+          <h1 className="sw-title text-2xl sm:text-3xl">
             서머너즈워 공격속도 계산기
           </h1>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+          <p className="sw-subtitle max-w-2xl">
             명예건물(%) + 리더스킬(%)만 먼저 반영하고, 각 몬스터는 추가
             공속(룬)이 반영됩니다.
           </p>
         </header>
 
-        <section className="grid gap-3 rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950 sm:grid-cols-3">
+        <section className="sw-panel grid gap-3 p-4 sm:grid-cols-3">
           <div className="flex flex-col gap-1">
-            <label className="pl-1 text-sm font-medium">명예건물 공속(%)</label>
+            <label className="sw-label">명예건물 공속(%)</label>
             <input
-              className="h-11 rounded-xl border border-zinc-200 bg-white px-3 text-sm outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:focus:border-zinc-600"
+              className="sw-input"
               inputMode="numeric"
               value={honorPercent}
               onChange={(e) =>
@@ -138,26 +181,21 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="pl-1 text-sm font-medium">리더스킬 공속(%)</label>
+            <label className="sw-label">리더스킬 공속(%)</label>
             <div className="relative" ref={leaderRef}>
               <button
                 type="button"
-                className={[
-                  "flex h-11 w-full items-center justify-between border border-zinc-200 bg-white px-3 text-left text-sm outline-none hover:bg-zinc-50 focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:hover:bg-zinc-900 dark:focus:border-zinc-600",
-                  "rounded-xl",
-                ].join(" ")}
+                className="sw-select"
                 aria-haspopup="listbox"
                 aria-expanded={leaderOpen}
                 onClick={() => setLeaderOpen((v) => !v)}
               >
                 <span>{leaderPercent}%</span>
-                <span className="ml-3 shrink-0 text-zinc-500 dark:text-zinc-400">
-                  ▾
-                </span>
+                <span className="ml-3 shrink-0 text-[var(--sw-muted)]">▾</span>
               </button>
               {leaderOpen ? (
                 <div
-                  className="absolute left-0 right-0 top-full z-50 mt-0.5 max-h-64 overflow-auto rounded-xl border border-zinc-200 bg-white p-1 shadow-xl dark:border-zinc-800 dark:bg-zinc-950"
+                  className="sw-dropdown"
                   role="listbox"
                   aria-label="리더스킬 공속(%)"
                 >
@@ -170,10 +208,8 @@ export default function Home() {
                         role="option"
                         aria-selected={active}
                         className={[
-                          "flex h-10 w-full items-center rounded-lg px-3 text-left text-sm",
-                          active
-                            ? "bg-zinc-900 text-white dark:bg-white dark:text-black"
-                            : "hover:bg-zinc-50 dark:hover:bg-zinc-900",
+                          "sw-dropdown-item",
+                          active ? "sw-dropdown-item-active" : "",
                         ].join(" ")}
                         onClick={() => {
                           setLeaderPercent(v);
@@ -189,29 +225,27 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-              <div className="pl-1 text-sm font-medium">합산 보너스(%)</div>
-              <div className="h-11 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3 text-sm leading-[44px] tabular-nums dark:border-zinc-800 dark:bg-zinc-900">
-                {totalPercent}%
-              </div>
+            <div className="sw-label">합산 보너스(%)</div>
+            <div className="sw-readonly">{totalPercent}%</div>
           </div>
         </section>
 
         <section className="grid gap-3 lg:grid-cols-2">
-          <div className="rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
+          <div className="sw-panel p-4">
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-base font-semibold">몬스터 선택 (2~5)</h2>
+              <h2 className="sw-section-title">몬스터 선택 (2~5)</h2>
               <div className="flex gap-2">
                 <button
                   type="button"
-                  className="h-9 rounded-xl border border-zinc-200 bg-white px-3 text-sm font-medium disabled:opacity-50 dark:border-zinc-800 dark:bg-black"
+                  className="sw-btn-outline"
                   disabled={!canRemoveSlot}
                   onClick={() => setSlots((prev) => prev.slice(0, prev.length - 1))}
                 >
-                  - 슬롯
+                  − 슬롯
                 </button>
                 <button
                   type="button"
-                  className="h-9 rounded-xl bg-zinc-900 px-3 text-sm font-medium text-white disabled:opacity-50 dark:bg-white dark:text-black"
+                  className="sw-btn-gold"
                   disabled={!canAddSlot}
                   onClick={() =>
                     setSlots((prev) => [
@@ -233,15 +267,13 @@ export default function Home() {
               {slots.map((slot, i) => (
                 <div
                   key={slot.key}
-                  className="grid grid-cols-1 gap-2 rounded-xl border border-zinc-200 p-3 dark:border-zinc-800 sm:grid-cols-5"
+                  className="sw-panel-inner grid grid-cols-1 gap-2 p-3 sm:grid-cols-5"
                 >
                   <div className="sm:col-span-3">
-                    <div className="pl-1 mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                      슬롯 {i + 1}
-                    </div>
+                    <div className="sw-label-sm">슬롯 {i + 1}</div>
                     <button
                       type="button"
-                      className="flex h-11 w-full items-center justify-between rounded-xl border border-zinc-200 bg-white px-3 text-left text-sm outline-none hover:bg-zinc-50 dark:border-zinc-800 dark:bg-black dark:hover:bg-zinc-900"
+                      className="sw-select"
                       onClick={() => {
                         setPickerOpenSlotKey(slot.key);
                         setPickerQuery("");
@@ -252,20 +284,13 @@ export default function Home() {
                           ? labelMonster(monsterById[slot.monsterId])
                           : "몬스터 선택"}
                       </span>
-                      {/*   
-                      <span className="ml-3 shrink-0 text-zinc-500 dark:text-zinc-400">
-                        검색
-                      </span> 
-                      */}
                     </button>
                   </div>
 
                   <div className="sm:col-span-2">
-                    <div className="pl-1 mb-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                      추가 공속(+)
-                    </div>
+                    <div className="sw-label-sm">추가 공속(+)</div>
                     <input
-                      className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-3 text-sm outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:focus:border-zinc-600"
+                      className="sw-input"
                       inputMode="numeric"
                       value={slot.addSpeed}
                       onChange={(e) => {
@@ -283,13 +308,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
-            <h2 className="mb-3 text-base font-semibold">
-              턴 순서 (최종 공속 내림차순)
-            </h2>
+          <div className="sw-panel p-4">
+            <h2 className="sw-section-title mb-3">턴 순서 (최종 공속 내림차순)</h2>
 
             {filled.length === 0 ? (
-              <div className="rounded-xl border border-dashed border-zinc-200 p-6 text-sm text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">
+              <div className="sw-panel-inner border-dashed p-6 text-center text-sm text-[var(--sw-muted)]">
                 몬스터를 1마리 이상 선택하면 여기에서 순서가 계산됩니다.
               </div>
             ) : (
@@ -297,25 +320,29 @@ export default function Home() {
                 {filled.map((x, rank) => (
                   <li
                     key={`${x.slotKey}-${x.monster.id}`}
-                    className="flex items-center justify-between rounded-xl border border-zinc-200 p-3 dark:border-zinc-800"
+                    className={[
+                      "sw-panel-inner flex items-center justify-between p-3",
+                      rank === 0 ? "sw-rank-first" : "",
+                    ].join(" ")}
                   >
-                    <div className="flex flex-col">
-                      <div className="text-sm font-semibold">
-                        {rank + 1}. {x.monster.nameKr}
-                        <span className="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                          ({x.monster.attribute})
+                    <div className="flex flex-col gap-1">
+                      <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+                        <span className="text-[var(--sw-gold-bright)]">
+                          {rank + 1}.
+                        </span>
+                        <span>{x.monster.nameKr}</span>
+                        <span className={ATTR_BADGE[x.monster.attribute]}>
+                          {x.monster.attribute}
                         </span>
                       </div>
-                      <div className="text-xs text-zinc-600 dark:text-zinc-400">
+                      <div className="text-xs text-[var(--sw-muted)]">
                         기본 {x.monster.baseSpeed} · 보너스 {totalPercent}% ·
                         추가 +{x.addSpeed}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-semibold">
-                        {x.finalSpeed}
-                      </div>
-                      <div className="text-xs text-zinc-500 dark:text-zinc-400">
+                      <div className="sw-speed-value">{x.finalSpeed}</div>
+                      <div className="text-xs text-[var(--sw-muted)]">
                         최종 공속
                       </div>
                     </div>
@@ -329,20 +356,20 @@ export default function Home() {
 
       {pickerOpenSlotKey ? (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-8"
+          className="sw-modal-overlay fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-8"
           role="dialog"
           aria-modal="true"
           onMouseDown={() => setPickerOpenSlotKey(null)}
         >
           <div
-            className="w-full max-w-2xl rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl dark:border-zinc-800 dark:bg-zinc-950"
+            className="sw-modal w-full max-w-2xl"
             onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between gap-3">
-              <div className="text-base font-semibold">몬스터 검색</div>
+              <div className="sw-section-title">몬스터 검색</div>
               <button
                 type="button"
-                className="h-9 rounded-xl border border-zinc-200 bg-white px-3 text-sm font-medium dark:border-zinc-800 dark:bg-black"
+                className="sw-btn-outline"
                 onClick={() => setPickerOpenSlotKey(null)}
               >
                 닫기
@@ -351,7 +378,7 @@ export default function Home() {
 
             <div className="flex items-center gap-2">
               <input
-                className="h-11 flex-1 rounded-xl border border-zinc-200 bg-white px-3 text-sm outline-none focus:border-zinc-400 dark:border-zinc-800 dark:bg-black dark:focus:border-zinc-600"
+                className="sw-input flex-1"
                 placeholder="몬스터명, 각성명(한글, 영문)으로 검색 (예: 조커, 루쉔, lushen)"
                 value={pickerQuery}
                 autoFocus
@@ -360,23 +387,23 @@ export default function Home() {
                   if (e.key === "Escape") setPickerOpenSlotKey(null);
                 }}
               />
-              <div className="shrink-0 text-xs text-zinc-500 dark:text-zinc-400">
+              <div className="shrink-0 text-xs font-medium text-[var(--sw-gold)]">
                 {pickerList.length}/{monsterList.length}
               </div>
             </div>
 
-            <div className="mt-3 max-h-[60vh] overflow-auto rounded-xl border border-zinc-200 dark:border-zinc-800">
+            <div className="sw-panel-inner mt-3 max-h-[60vh] overflow-auto">
               {pickerList.length === 0 ? (
-                <div className="p-4 text-sm text-zinc-600 dark:text-zinc-400">
+                <div className="p-4 text-sm text-[var(--sw-muted)]">
                   검색 결과가 없습니다.
                 </div>
               ) : (
-                <ul className="divide-y divide-zinc-200 dark:divide-zinc-800">
+                <ul className="divide-y divide-[var(--sw-border)]">
                   {pickerList.map((m) => (
                     <li key={m.id}>
                       <button
                         type="button"
-                        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition-colors hover:bg-[rgba(40,58,96,0.5)]"
                         onClick={() => {
                           const pickedId = m.id;
                           setSlots((prev) =>
@@ -389,21 +416,22 @@ export default function Home() {
                           setPickerOpenSlotKey(null);
                         }}
                       >
-                        <div className="flex min-w-0 flex-col">
-                          <div className="truncate text-sm font-semibold">
-                            {m.awakenedNameKr}
-                            <span className="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                              ({m.attribute})
+                        <div className="flex min-w-0 flex-col gap-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="truncate text-sm font-semibold text-[var(--sw-text)]">
+                              {m.awakenedNameKr}
+                            </span>
+                            <span className={ATTR_BADGE[m.attribute]}>
+                              {m.attribute}
                             </span>
                           </div>
-                          <div className="truncate text-xs text-zinc-600 dark:text-zinc-400">
-                            {m.nameKr} · 공격속도 {m.baseSpeed} · {m.stars}성{/*  · id:
-                            {m.id} */}
+                          <div className="truncate text-xs text-[var(--sw-muted)]">
+                            {m.nameKr} · 공격속도 {m.baseSpeed} · {m.stars}성
                           </div>
                         </div>
-                        <div className="shrink-0 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                        <span className="shrink-0 text-xs font-semibold text-[var(--sw-gold)]">
                           선택
-                        </div>
+                        </span>
                       </button>
                     </li>
                   ))}
@@ -411,7 +439,7 @@ export default function Home() {
               )}
             </div>
 
-            <div className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+            <div className="mt-3 text-xs text-[var(--sw-muted)]">
               팁: ESC로 닫기 가능
             </div>
           </div>
