@@ -2,7 +2,8 @@
 
 import { monsters } from "@/data/monsters";
 import type { Attribute, Monster } from "@/types/monster";
-import { calcFinalSpeed } from "@/lib/speed";
+import { getPostPassiveFlat } from "@/data/speedPassives";
+import { calcFinalSpeedBreakdown } from "@/lib/speed";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type Slot = {
@@ -111,8 +112,9 @@ export default function Home() {
       .map((s, idx) => {
         const m = s.monsterId ? monsterById[s.monsterId] : undefined;
         if (!m) return null;
-        const finalSpeed = calcFinalSpeed(
-          { baseSpeed: m.baseSpeed, addSpeed: s.addSpeed },
+        const postPassiveFlat = getPostPassiveFlat(m.id);
+        const speed = calcFinalSpeedBreakdown(
+          { baseSpeed: m.baseSpeed, addSpeed: s.addSpeed, postPassiveFlat },
           { percent: totalPercent },
         );
         return {
@@ -120,7 +122,8 @@ export default function Home() {
           slotKey: s.key,
           monster: m,
           addSpeed: s.addSpeed,
-          finalSpeed,
+          postPassiveFlat: speed.passiveFlat,
+          finalSpeed: speed.total,
         };
       })
       .filter((x): x is NonNullable<typeof x> => x !== null)
@@ -337,7 +340,10 @@ export default function Home() {
                       </div>
                       <div className="text-xs text-[var(--sw-muted)]">
                         기본 {x.monster.baseSpeed} · 보너스 {totalPercent}% ·
-                        추가 +{x.addSpeed}
+                        룬 +{x.addSpeed}
+                        {x.postPassiveFlat > 0
+                          ? ` · 패시브 +${x.postPassiveFlat}`
+                          : null}
                       </div>
                     </div>
                     <div className="text-right">

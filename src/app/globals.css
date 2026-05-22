@@ -15,10 +15,10 @@
   --sw-text: #e8edf7;
   --sw-muted: #8b9ec4;
   --sw-input: #0a101c;
-  --attr-fire: #ff6b4a;
+  --attr-fire: #e83828;
   --attr-water: #4dabf7;
-  --attr-wind: #69db7c;
-  --attr-light: #ffd43b;
+  --attr-wind: #f0a732;
+  --attr-light: #f0ece4;
   --attr-dark: #b197fc;
 }
 
@@ -305,8 +305,8 @@ body {
 }
 
 .sw-attr-badge-fire {
-  border-color: rgba(255, 107, 74, 0.5);
-  background: rgba(255, 107, 74, 0.12);
+  border-color: rgba(232, 56, 40, 0.55);
+  background: rgba(232, 56, 40, 0.14);
   color: var(--attr-fire);
 }
 .sw-attr-badge-water {
@@ -315,13 +315,13 @@ body {
   color: var(--attr-water);
 }
 .sw-attr-badge-wind {
-  border-color: rgba(105, 219, 124, 0.5);
-  background: rgba(105, 219, 124, 0.12);
+  border-color: rgba(240, 167, 50, 0.55);
+  background: rgba(240, 167, 50, 0.14);
   color: var(--attr-wind);
 }
 .sw-attr-badge-light {
-  border-color: rgba(255, 212, 59, 0.5);
-  background: rgba(255, 212, 59, 0.12);
+  border-color: rgba(240, 236, 228, 0.55);
+  background: rgba(240, 236, 228, 0.12);
   color: var(--attr-light);
 }
 .sw-attr-badge-dark {
