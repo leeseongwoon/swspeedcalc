@@ -174,7 +174,7 @@ export default function Home() {
         </header>
 
         {ADSENSE_SLOTS.top ? (
-          <AdBanner slot={ADSENSE_SLOTS.top} format="horizontal" />
+          <AdBanner slot={ADSENSE_SLOTS.top} />
         ) : null}
 
         <section className="sw-panel grid gap-3 p-4 sm:grid-cols-3">

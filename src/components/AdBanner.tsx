@@ -1,6 +1,7 @@
 "use client";
 
 import { ADSENSE_CLIENT } from "@/lib/adsense";
+import { loadAdsenseScript } from "@/lib/loadAdsenseScript";
 import { useEffect, useRef } from "react";
 
 declare global {
@@ -20,17 +21,32 @@ export function AdBanner({
   format = "auto",
   className = "",
 }: AdBannerProps) {
+  const insRef = useRef<HTMLModElement>(null);
   const pushed = useRef(false);
 
   useEffect(() => {
     if (!ADSENSE_CLIENT || !slot || pushed.current) return;
-    try {
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adsbygoogle.push({});
-      pushed.current = true;
-    } catch {
-      // AdSense blocked or script not loaded yet
-    }
+
+    let cancelled = false;
+
+    loadAdsenseScript()
+      .then(() => {
+        if (cancelled || pushed.current || !insRef.current) return;
+        try {
+          window.adsbygoogle = window.adsbygoogle || [];
+          window.adsbygoogle.push({});
+          pushed.current = true;
+        } catch {
+          // AdSense blocked
+        }
+      })
+      .catch(() => {
+        // Script blocked or failed
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [slot]);
 
   if (!ADSENSE_CLIENT || !slot) return null;
@@ -41,6 +57,7 @@ export function AdBanner({
       aria-label="광고"
     >
       <ins
+        ref={insRef}
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client={ADSENSE_CLIENT}
