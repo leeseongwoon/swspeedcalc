@@ -1,0 +1,53 @@
+"use client";
+
+import { ADSENSE_CLIENT } from "@/lib/adsense";
+import { useEffect, useRef } from "react";
+
+declare global {
+  interface Window {
+    adsbygoogle?: Record<string, unknown>[];
+  }
+}
+
+type AdBannerProps = {
+  slot: string;
+  format?: "auto" | "horizontal" | "rectangle" | "vertical";
+  className?: string;
+};
+
+export function AdBanner({
+  slot,
+  format = "auto",
+  className = "",
+}: AdBannerProps) {
+  const pushed = useRef(false);
+
+  useEffect(() => {
+    if (!ADSENSE_CLIENT || !slot || pushed.current) return;
+    try {
+      window.adsbygoogle = window.adsbygoogle || [];
+      window.adsbygoogle.push({});
+      pushed.current = true;
+    } catch {
+      // AdSense blocked or script not loaded yet
+    }
+  }, [slot]);
+
+  if (!ADSENSE_CLIENT || !slot) return null;
+
+  return (
+    <aside
+      className={["sw-ad-slot", className].filter(Boolean).join(" ")}
+      aria-label="광고"
+    >
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client={ADSENSE_CLIENT}
+        data-ad-slot={slot}
+        data-ad-format={format}
+        data-full-width-responsive="true"
+      />
+    </aside>
+  );
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { AdSenseScript } from "@/components/AdSenseScript";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full">
       <body className="flex min-h-full flex-col font-sans antialiased text-[var(--sw-text)]">
+        <AdSenseScript />
         {children}
         <Analytics />
       </body>
