@@ -1,16 +1,22 @@
+"use client";
+
 import { ADSENSE_CLIENT, isAdsenseEnabled } from "@/lib/adsense";
-import Script from "next/script";
+import { useEffect } from "react";
+
+const SCRIPT_ID = "adsense-script";
 
 export function AdSenseScript() {
-  if (!isAdsenseEnabled()) return null;
+  useEffect(() => {
+    if (!isAdsenseEnabled()) return;
+    if (document.getElementById(SCRIPT_ID)) return;
 
-  return (
-    <Script
-      id="adsense-script"
-      async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
-  );
+    const script = document.createElement("script");
+    script.id = SCRIPT_ID;
+    script.async = true;
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`;
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+  }, []);
+
+  return null;
 }
