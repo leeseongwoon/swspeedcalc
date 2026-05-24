@@ -2,7 +2,7 @@
 
 import { AdBanner } from "@/components/AdBanner";
 import { monsters } from "@/data/monsters";
-import { ADSENSE_SLOTS } from "@/lib/adsense";
+import { ADSENSE_SLOT } from "@/lib/adsense";
 import type { Attribute, Monster } from "@/types/monster";
 import { getPostPassiveFlat } from "@/data/speedPassives";
 import { calcFinalSpeedBreakdown } from "@/lib/speed";
@@ -172,10 +172,6 @@ export default function Home() {
             공속(룬)이 반영됩니다.
           </p>
         </header>
-
-        {ADSENSE_SLOTS.top ? (
-          <AdBanner slot={ADSENSE_SLOTS.top} />
-        ) : null}
 
         <section className="sw-panel grid gap-3 p-4 sm:grid-cols-3">
           <div className="flex flex-col gap-1">
@@ -365,8 +361,8 @@ export default function Home() {
           </div>
         </section>
 
-        {ADSENSE_SLOTS.bottom ? (
-          <AdBanner slot={ADSENSE_SLOTS.bottom} format="horizontal" />
+        {ADSENSE_SLOT ? (
+          <AdBanner slot={ADSENSE_SLOT} format="horizontal" />
         ) : null}
       </main>
 

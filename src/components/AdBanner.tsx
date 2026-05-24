@@ -18,7 +18,7 @@ type AdBannerProps = {
 
 export function AdBanner({
   slot,
-  format = "auto",
+  format = "horizontal",
   className = "",
 }: AdBannerProps) {
   const insRef = useRef<HTMLModElement>(null);
