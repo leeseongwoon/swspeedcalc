@@ -360,7 +360,7 @@ body {
 
 @media (min-width: 640px) {
   .sw-ad-slot {
-    height: 70px;
+    height: 20px;
   }
 
   .sw-ad-slot .adsbygoogle {
