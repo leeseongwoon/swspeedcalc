@@ -366,6 +366,22 @@ export default function Home() {
         ) : null}
       </main>
 
+      <footer className="mx-auto w-full max-w-5xl px-4 pb-10 pt-2 text-center text-xs leading-relaxed text-[var(--sw-muted)] sm:px-8 lg:px-12 xl:px-16">
+        <p>
+          문의사항 및 개선사항 이메일 문의{" "}
+          <a
+            href="mailto:sw0523_dr@outlook.kr"
+            className="text-[var(--sw-gold)] underline-offset-2 hover:underline"
+          >
+            sw0523_dr@outlook.kr
+          </a>
+        </p>
+        <p className="mt-2">
+          본 사이트는 서비스 개선을 위해 Vercel Analytics를 사용하여 익명화된
+          방문 통계(페이지 조회수, 트래픽 정보 등)를 수집합니다.
+        </p>
+      </footer>
+
       {pickerOpenSlotKey ? (
         <div
           className="sw-modal-overlay fixed inset-0 z-50 flex items-start justify-center overflow-y-auto px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top))] sm:pt-8"
