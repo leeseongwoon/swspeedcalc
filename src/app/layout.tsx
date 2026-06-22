@@ -1,4 +1,3 @@
-import { AdSenseScript } from "@/components/AdSenseScript";
 import { siteConfig } from "@/lib/site";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -75,7 +74,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <AdSenseScript />
         {children}
         <Analytics />
       </body>

@@ -342,38 +342,3 @@ body {
   border-color: var(--sw-border-gold) !important;
   box-shadow: 0 0 16px rgba(232, 197, 71, 0.15);
 }
-
-.sw-ad-slot {
-  overflow: hidden;
-  height: 50px;
-  border-radius: 0.75rem;
-  border: 1px dashed var(--sw-border);
-  background: rgba(8, 14, 26, 0.45);
-  text-align: center;
-}
-
-.sw-ad-slot .adsbygoogle {
-  display: block;
-  width: 100%;
-  height: 50px;
-}
-
-@media (min-width: 640px) {
-  .sw-ad-slot {
-    height: 20px;
-  }
-
-  .sw-ad-slot .adsbygoogle {
-    height: 70px;
-  }
-}
-
-@media (min-width: 768px) {
-  .sw-ad-slot {
-    height: 90px;
-  }
-
-  .sw-ad-slot .adsbygoogle {
-    height: 90px;
-  }
-}

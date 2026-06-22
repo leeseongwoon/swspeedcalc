@@ -1,8 +1,6 @@
 "use client";
 
-import { AdBanner } from "@/components/AdBanner";
 import { monsters } from "@/data/monsters";
-import { ADSENSE_SLOT } from "@/lib/adsense";
 import type { Attribute, Monster } from "@/types/monster";
 import { getPostPassiveFlat } from "@/data/speedPassives";
 import { calcFinalSpeedBreakdown } from "@/lib/speed";
@@ -360,10 +358,6 @@ export default function Home() {
             )}
           </div>
         </section>
-
-        {ADSENSE_SLOT ? (
-          <AdBanner slot={ADSENSE_SLOT} format="horizontal" />
-        ) : null}
       </main>
 
       <footer className="mx-auto w-full max-w-5xl px-4 pb-10 pt-2 text-center text-xs leading-relaxed text-[var(--sw-muted)] sm:px-8 lg:px-12 xl:px-16">
