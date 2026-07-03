@@ -115,6 +115,11 @@ body {
   color: var(--sw-muted);
 }
 
+input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .sw-input {
   height: 2.75rem;
   width: 100%;
