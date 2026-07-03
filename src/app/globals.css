@@ -118,6 +118,7 @@ body {
 input {
   -webkit-appearance: none;
   appearance: none;
+  box-sizing: border-box;
 }
 
 .sw-input {

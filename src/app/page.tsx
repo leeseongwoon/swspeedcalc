@@ -157,7 +157,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-1 flex-col text-[var(--sw-text)]">
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-10 sm:px-8 lg:px-12 lg:py-16 xl:px-16 xl:py-20">
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-4 sm:px-8 lg:px-12 lg:pt-16 lg:pb-8 xl:px-16 xl:pt-10 xl:pb-10">
         <header className="flex flex-col gap-2 border-b border-[var(--sw-border-gold)] pb-5">
           <p className="text-xs font-semibold tracking-[0.2em] text-[var(--sw-gold)] uppercase">
             Summoners War
