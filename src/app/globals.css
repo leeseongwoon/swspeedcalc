@@ -122,12 +122,18 @@ body {
   border: 1px solid var(--sw-border);
   background-color: var(--sw-input);
   padding: 0 0.75rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--sw-text);
   outline: none;
   transition:
     border-color 0.15s,
     box-shadow 0.15s;
+}
+
+@media (min-width: 640px) {
+  .sw-input {
+    font-size: 0.875rem;
+  }
 }
 
 .sw-input::placeholder {
@@ -279,6 +285,9 @@ body {
 }
 
 .sw-modal {
+  display: flex;
+  max-height: calc(100dvh - 2rem);
+  flex-direction: column;
   border-radius: 1rem;
   border: 1px solid var(--sw-border-gold);
   background: linear-gradient(

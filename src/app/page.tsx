@@ -384,7 +384,7 @@ export default function Home() {
           onMouseDown={() => setPickerOpenSlotKey(null)}
         >
           <div
-            className="sw-modal w-full max-w-2xl"
+            className="sw-modal flex w-full max-w-2xl flex-col"
             onMouseDown={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between gap-3">
@@ -414,7 +414,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="sw-panel-inner mt-3 max-h-[60vh] overflow-auto">
+            <div className="sw-panel-inner mt-3 min-h-0 flex-1 overflow-auto">
               {pickerList.length === 0 ? (
                 <div className="p-4 text-sm text-[var(--sw-muted)]">
                   검색 결과가 없습니다.
